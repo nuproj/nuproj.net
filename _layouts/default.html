@@ -4,6 +4,8 @@
   <title>{{page.title}}</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen">
   <link rel="stylesheet" href="/css/syntax.css" media="screen">
+  <link rel="stylesheet" href="/css/anchors.css" media="screen">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
 
@@ -44,6 +46,34 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+
+$(function () {
+    $("h1, h2, h3, h4, h5, h6").each(function () {
+        // Make sure the element has an id.
+        if (!this.id) {
+          var text = $(this).text();
+          var id = computeId(text);
+          this.id = id;
+        }
+
+        var icon = '<i class="fa fa-link"></i>';
+        return $(this).prepend($("<a />")
+                      .addClass("header-link")
+                      .attr("href", "#" + this.id)
+                      .html(icon));
+    });
+
+    function computeId(string) {
+        return string.toLowerCase()
+                     .replace(/[^a-z0-9]+/g, "-")
+                     .replace(/-+$/g, "")
+                     .replace(/^-+/g, "")
+    }
+});
+
+</script>
 
 </body>
 
