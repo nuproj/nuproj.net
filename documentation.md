@@ -84,7 +84,7 @@ Packages marked as development dependencies will be ignored.
 </ItemGroup>
 ```
 
-## Framework Assemblies
+## Framework assemblies
 
 NuGet supports adding references to framework assemblies as well. You can
 specify those via the `FrameworkReference` item:
@@ -107,7 +107,7 @@ As with dependencies, those can be specific to a certain target framework:
 </ItemGroup>
 ```
 
-## Packaging Files
+## Packaging files
 
 Packaging library files is done as follows:
 
@@ -155,7 +155,7 @@ arbitrary files:
 </ItemGroup>
 ```
 
-## Controlling Library References
+## Controlling library references
 
 For a given a target platform, NuGet will add references to all the libraries in
 the corresponding lib folder. You can override this behavior by using the
@@ -173,7 +173,7 @@ packaged in the corresponding lib folder. If it's not the reference is simply
 ignored. In other words, the target framework is already controlled by the fact
 that the file might or might not be in the corresponding lib folder.
 
-# Checked-in Toolkit
+# Checked-in toolkit
 
 On the build machine, you shouldn't install NuProj. Instead, you should restore
 the [NuGet package that provides the build server support](http://www.nuget.org/packages/NuProj).
