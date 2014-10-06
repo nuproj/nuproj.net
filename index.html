@@ -3,10 +3,102 @@ title: Home
 layout: default
 ---
 
-<div class="jumbotron">
-  <h1>NuProj</h1>
-  <p>Building NuGet Packages right from Visual Studio and MSBuild</p>
-  <p><a href="/documentation" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+<div class="container">
+    <div class="hero">
+        <img src="/images/NuProjVS.png">
+        <h1>NuProj</h1>
+        <p class="lead">The most convenient and flexible way to create NuGet packages</p>
+        <p>
+            <a href="http://visualstudiogallery.msdn.microsoft.com/fbe9b9b8-34ae-47b5-a751-cb71a16f7e96/file/133119/6/NuProj.msi"
+               class="pull-center btn btn-success btn-lg"
+               role="button">
+                <i class="fa fa-download"></i>
+                Download
+            </a>
+        </p>
+    </div>
 </div>
 
-<img src="/images/NuProjVS.png"></img>
+<div class="container marketing">
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-9">
+      <h2 class="featurette-heading">Supports all NuGet features. <span class="text-muted">No compromises.</span></h2>
+      <p class="lead">
+        NuGet has a vast amount of configuration options and conventions. NuProj allows you to express them
+        all while keeping the complexity at a minimum.
+      </p>
+      <p>
+        <a href="/documentation/#raw-msbuild-authoring" class="btn btn-primary btn-lg" role="button">Learn more</a>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <img class="featurette-image img-responsive" src="/images/NuGet.png">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-3">
+      <img class="featurette-image img-responsive" src="/images/VisualStudio.png">
+    </div>
+    <div class="col-md-9">
+      <h2 class="featurette-heading">Integrated into Visual Studio. <span class="text-muted">Feel at home.</span></h2>
+      <p class="lead">
+        Developers don't like having to switch tools. With NuProj, creating and maintaining NuGet packages
+        was never simpler. Thanks to a first class Visual Studio integraion, it's all part of your daily
+        routine.
+      </p>
+      <p>
+        <a href="documentation" class="btn btn-primary btn-lg" role="button">Learn more</a>
+      </p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-9">
+      <h2 class="featurette-heading">Integrated into MSBuild. <span class="text-muted">Building like the rest.</span></h2>
+      <p class="lead">
+        Build automation is part of every professional development workflow. Since NuProj is integrated
+        into MSBuild it builds the same way as all your other projects. Running on a hosted build controller? No
+        worries &mdash; we got you covered, too. NuProj can also be restored as a NuGet package which means you don't
+        need to instally anything.
+      </p>
+      <p>
+        <a href="documentation/#checked-in-toolkit" class="btn btn-primary btn-lg" role="button">Learn more</a>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <img class="featurette-image img-responsive" src="/images/MSBuild.png">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-3">
+      <img class="featurette-image img-responsive" src="/images/GitHub.png">
+    </div>
+    <div class="col-md-9">
+      <h2 class="featurette-heading">It's open source. <span class="text-muted">Participate &amp; contribute.</span></h2>
+      <p class="lead">
+        No reason to convince your boss to buy another expensive IDE tool. NuProj is free. It's also
+        open source under the MIT license. Visit our GitHub project to file bugs, engage in dicussions
+        or even contribute a feature. See ya!
+      </p>
+      <p>
+        <a href="https://github.com/terrajobst/nuproj" class="btn btn-primary btn-lg" role="button">Learn more</a>
+      </p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  {% include footer.html %}
+
+</div>
