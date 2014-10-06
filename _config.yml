@@ -1,4 +1,4 @@
 markdown: redcarpet
 permalink: pretty
 highlighter: pygments
-exclude: ["LICENSE", "README.md", "CNAME"]
+exclude: ["README.md", "CNAME"]
