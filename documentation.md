@@ -17,10 +17,11 @@ NuGet references to proper dependencies in the resulting .nupkg file. You can
 also reference other NuProj projects which allows you to declare dependencies to
 packages that are part of the same solution.
 
-2. **Manual maintained content**. You can also add content directly to the project.
-In that case, you'd simply use folders in the Visual Studio project to control
-how the content is packaged. For example, in order to get an install script,
-you'd create a tools folder and within that you'd add the install.ps1 file.
+2. **Manually maintained content**. You can also add content directly to the
+project. In that case, you'd simply use folders in the Visual Studio project to
+control how the content is packaged. For example, in order to get an install
+script, you'd create a tools folder and within that you'd add the install.ps1
+file.
 
 3. **Producing symbol packages**. You can easily create symbol packages.
 Optionally, you can also include the sources. In this case, NuProj will use the
@@ -55,10 +56,10 @@ up the contents from `ClassLibrary1`:
 
 ### What is packaged up?
 
-NuProj will normally include all the `.dll` files that produced from the
+NuProj will normally include all the `.dll` files that are produced from the
 referenced projects. However, there are two special cases:
 
-1. **File coming from a NuGet packages**. If the files in the output were coming
+1. **File coming from NuGet packages**. If the files in the output were coming
 from NuGet package, NuProj will add a package dependency instead of adding the
 file to the resulting package.
 
@@ -67,10 +68,10 @@ solution contains two class library projects and you want to create a NuGet
 package for each of them. Now let's also say that the second class library
 depends on the first. When building the NuGet package for the second class
 library you probably don't want NuProj to include the binary of the first class
-library. Instead you'll probably want NuProj to add a package dependency to the
+library. Instead, you'll probably want NuProj to add a package dependency to the
 NuGet project that you built for the first class library. In order to do that,
-you need to add reference to NuProj project. The result would look like the
-following:
+you need to add reference to the NuProj project of the first class library. The
+result would look like the following:
 
   ![Package Contents](/images/ProjectDependencies.png)
 
@@ -78,11 +79,11 @@ following:
 
 Since NuProj is a fully-fledged project type, you can add content as you can
 with regular projects. In order to cause the files to be packaged up by NuProj
-all you need to do is set their `Build Action` to `Content`:
+you'll need to set their `Build Action` to `Content`:
 
 ![Build Action](/images/BuildAction.png)
 
-Good examples of cases where you want to add manual content:
+Here are a few examples where adding manual content comes in handy:
 
 * **Readme files**. It's common to have a `README.txt` in the NuGet package.
   In fact, the default template already provides one. More about readme files
