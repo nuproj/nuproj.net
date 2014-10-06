@@ -5,19 +5,98 @@ layout: default
 
 # Getting started
 
-NuProj provides an MSBuild-based approach to create NuGet packages (.nupkg). The
-build projects are called .nuproj files and are regular MSBuild projects.
+NuProj adds a new project type to Visual Studio that let's you build NuGet
+packages.
 
-You can create new a .nuproj file by using the template that we install into
-Visual Studio. Invoke the menu command **File | New | File...** or simply press
-<kbd>Ctrl + N</kbd> and select **NuGet Package MSBuild Project**.
+It supports:
+
+1. **Referencing other projects (such as C# and VB projects)**. This will cause
+their project outputs to be packaged under the lib folder. NuProj takes care of
+figuring out the right lib folder name, such as net45. It will also promote any
+NuGet references to proper dependencies in the resulting .nupkg file. You can
+also reference other NuProj projects which allows you to declare dependencies to
+packages that are part of the same solution.
+
+2. **Manual maintained content**. You can also add content directly to the project.
+In that case, you'd simply use folders in the Visual Studio project to control
+how the content is packaged. For example, in order to get an install script,
+you'd create a tools folder and within that you'd add the install.ps1 file.
+
+3. **Producing symbol packages**. You can easily create symbol packages.
+Optionally, you can also include the sources. In this case, NuProj will use the
+PDB information to find the source files and embed them in the resulting .nupkg
+file.
+
+4. **Build servers such as Visual Studio Online**. The build integration is also
+available separately and can be checked in or
+[restored as a NuGet package](#checked-in-toolkit).
+
+## Creating a NuGet package
+
+Create a new project in Visual Studio by invoking the menu command
+**File | New | Project** or by pressing <kbd>Ctrl + Shift + N</kbd>. In the
+**New Project** dialog, select the **NuGet Package** template from the **NuGet**
+category. Click **OK**.
+
+![New Project dialog](/images/NewProject.png)
+
+## Adding automatic content
+
+Let's say you want to package a class library, e.g. `ClassLibrary1`. In order
+to automatically package the output of this class library all you need is adding
+a reference from the NuGet package project:
+
+![Add Reference](/images/AddReference.png)
+
+After adding the reference to `ClassLibrary1`, the NuGet project will now pick
+up the contents from `ClassLibrary1`:
+
+![Package Contents](/images/NuGetPackageContents.png)
+
+### What is packaged up?
+
+NuProj will normally include all the `.dll` files that produced from the
+referenced projects. However, there are two special cases:
+
+1. **File coming from a NuGet packages**. If the files in the output were coming
+from NuGet package, NuProj will add a package dependency instead of adding the
+file to the resulting package.
+
+2. **Files that are already packaged by another NuProj project**. Imagine your
+solution contains two class library projects and you want to create a NuGet
+package for each of them. Now let's also say that the second class library
+depends on the first. When building the NuGet package for the second class
+library you probably don't want NuProj to include the binary of the first class
+library. Instead you'll probably want NuProj to add a package dependency to the
+NuGet project that you built for the first class library. In order to do that,
+you need to add reference to NuProj project. The result would look like the
+following:
+
+  ![Package Contents](/images/ProjectDependencies.png)
+
+## Adding manual content
+
+Since NuProj is a fully-fledged project type, you can add content as you can
+with regular projects. In order to cause the files to be packaged up by NuProj
+all you need to do is set their `Build Action` to `Content`:
+
+![Build Action](/images/BuildAction.png)
+
+Good examples of cases where you want to add manual content:
+
+* **Readme files**. It's common to have a `README.txt` in the NuGet package.
+  In fact, the default template already provides one. More about readme files
+  can be found in the [official NuGet documentation](http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package#Automatically_Displaying_a_Readme.txt_File_During_Package_Installation).
+* **Installation scripts**. Some NuGet packages require custom installation
+  scripts. See [official NuGet documentation](http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package#Automatically_Running_PowerShell_Scripts_During_Package_Installation_and_Removal)
+  for more details.
+
+# Raw MSBuild authoring
 
 In general, the definition of a NuProj file is very similar to the NuGet .nuspec
 file - except that it is done via MSBuild. In fact, NuProj generates the .nuspec
 file and simply calles NuGet to build the package. Thus, for details you can
 still refer to the [official NuGet documentation](http://docs.nuget.org/docs/reference/nuspec-reference).
-
-# Authoring
 
 ## Metadata
 
