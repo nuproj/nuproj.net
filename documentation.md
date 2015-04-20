@@ -128,6 +128,31 @@ This allows defining the metadata in terms of other MSBuild properties (such as
 `Owners` is simply defined via the `Authors` property). Also the, properties
 can be defined via command line arguments passed to MSBuild.
 
+### Determining the package version at build time
+
+When you don't know the package version up front and have an MSBuild Target that
+can determine what it should be (e.g. you want it to include today's date, or
+the HEAD position in source control), you can arrange for NuProj .targets to
+invoke your own target and set the `Version` property there.
+
+In the following example, we assume you already have an MSBuild target called
+`GetBuildVersion` which sets the `NuGetPackageVersion` project property. 
+The MSBuild syntax below will arrange to call that target, and set the NuProj
+`Version` property based on the version calculated by your existing target.
+The `VersionDependsOn` property is recognized by NuProj as a semicolon-delimited
+list of targets that must be run before assuming that the `Version` property
+has been set.
+
+    <PropertyGroup>
+      <VersionDependsOn>$(VersionDependsOn);GetNuPkgVersion</VersionDependsOn>
+    </PropertyGroup>
+    
+    <Target Name="GetNuPkgVersion" DependsOnTargets="GetBuildVersion">
+      <PropertyGroup>
+        <Version>$(NuGetPackageVersion)</Version>
+      </PropertyGroup>
+    </Target>
+
 ## Dependencies
 
 Package dependencies are expressed via MSBuild item groups:
