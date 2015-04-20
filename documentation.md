@@ -153,6 +153,18 @@ has been set.
       </PropertyGroup>
     </Target>
 
+### MSBuild properties that indicate output paths
+
+NuProj can produce two output files, each of which are represented
+by MSBuild properties as follows:
+
+| Property name          | Content                                            |
+|------------------------|----------------------------------------------------|
+| NuGetOutputPath        | c:\fullpath\to\bin\debug\*packageid*.nupkg         |
+| NuGetSymbolsOutputPath | c:\fullpath\to\bin\debug\*packageid*.symbols.nupkg |
+
+These properties are set by the `EstablishNuGetPaths` MSBuild target.
+
 ## Dependencies
 
 Package dependencies are expressed via MSBuild item groups:
