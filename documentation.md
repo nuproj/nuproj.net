@@ -290,5 +290,5 @@ you need to override the `NuProjTargetsPath` property:
 </PropertyGroup>
 ```
 
-Optionally, you can also chose a different layout and override the other
+Optionally, you can also choose a different layout and override the other
 properties as well.
