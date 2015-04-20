@@ -253,6 +253,23 @@ packaged in the corresponding lib folder. If it's not the reference is simply
 ignored. In other words, the target framework is already controlled by the fact
 that the file might or might not be in the corresponding lib folder.
 
+### Suppressing references
+
+When a NuPkg packages up references that you do not want to be packaged up,
+you may suppress the packaging of that reference by setting `CopyLocal=false`
+on that reference within Visual Studio (this becomes `Private=false` in MSBuild).
+Alternately, if you need `CopyLocal=true` semantics for other reasons but still
+wish to suppress packaging into NuPkg, you can add special metadata to the
+reference yourself:
+
+```xml
+<ItemGroup>
+  <Reference Include="DoNotPackageThis.dll">
+    <ExcludeFromNuPkg>true</ExcludeFromNuPkg>
+  </Reference>
+</ItemGroup>
+```
+
 # Checked-in toolkit
 
 On the build machine, you shouldn't install NuProj. Instead, you should restore
