@@ -1,4 +1,7 @@
 markdown: redcarpet
+redcarpet:
+  extensions:
+    - tables
 permalink: pretty
 highlighter: pygments
 exclude: ["README.md", "CNAME"]
