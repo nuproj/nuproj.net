@@ -59,7 +59,7 @@ up the contents from `ClassLibrary1`:
 NuProj will normally include all the `.dll` files that are produced from the
 referenced projects. However, there are two special cases:
 
-1. **File coming from NuGet packages**. If the files in the output were coming
+1. **Files coming from NuGet packages**. If the files in the output were coming
 from NuGet package, NuProj will add a package dependency instead of adding the
 file to the resulting package.
 
